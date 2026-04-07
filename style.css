@@ -2,12 +2,12 @@
 /* Matches infodem.upenn.edu aesthetic */
 
 :root {
-  --navy:       #1a2744;
-  --navy-mid:   #2d4a8a;
+  --navy:       #00194d;
+  --navy-mid:   #1a3a7a;
   --blue-card:  #eef2fb;
   --blue-card-border: #d0daf2;
-  --gold:       #c8973a;
-  --gold-light: #f0e0b8;
+  --gold:       #b8960c;
+  --gold-light: #f5e8b0;
   --white:      #ffffff;
   --body-bg:    #ffffff;
   --text:       #1a1a1a;
@@ -651,6 +651,210 @@ img { max-width: 100%; display: block; }
   width: 52px;
   height: 52px;
 }
+
+/* ─── Expandable Post Cards ─── */
+.post-card {
+  padding: 28px 30px;
+}
+.post-item {
+  padding: 0;
+}
+.expand-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  transition: color 0.15s;
+}
+.expand-btn:hover { color: var(--gold); }
+.expand-btn[aria-expanded="true"] { color: var(--gold); }
+.expand-icon { font-size: 0.8rem; transition: transform 0.2s; }
+
+.post-full-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.post-full-content-inner {
+  padding: 28px 30px 36px;
+  border-top: 1px solid var(--blue-card-border);
+  background: #fff;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #2a2a2a;
+}
+.post-full-content-inner p { margin-bottom: 20px; }
+.post-full-content-inner h2 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 32px 0 12px;
+}
+.post-full-content-inner ul,
+.post-full-content-inner ol {
+  margin: 0 0 20px 22px;
+}
+.post-full-content-inner li { margin-bottom: 8px; }
+.post-full-content-inner blockquote {
+  border-left: 3px solid var(--gold);
+  padding: 14px 20px;
+  margin: 24px 0;
+  font-style: italic;
+  color: #555;
+}
+.post-full-content-inner a { color: var(--gold); }
+.post-full-content-inner a:hover { color: var(--navy); }
+
+/* ─── Pull Quotes ─── */
+.pull-quote {
+  border-left: 3px solid var(--gold);
+  padding: 18px 24px;
+  margin: 24px 0;
+  background: #fdfaf4;
+}
+.pull-quote p {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #2a2a2a;
+  margin-bottom: 10px !important;
+  line-height: 1.7;
+}
+.pull-quote .attribution {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-style: normal;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ─── Bio Section ─── */
+.bio-section {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 2px solid var(--border);
+}
+.bio-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.bio-inner {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.bio-photo {
+  width: 110px;
+  height: 138px;
+  background: var(--light-bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  text-align: center;
+  overflow: hidden;
+}
+.bio-photo img { width: 100%; height: 100%; object-fit: cover; }
+.bio-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.bio-title {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.bio-text {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: #444;
+  line-height: 1.7;
+}
+.bio-text p { margin-bottom: 10px; }
+
+/* ─── RFP Toggle (inside grant post) ─── */
+.rfp-toggle-wrap {
+  margin-top: 36px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.rfp-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--blue-card);
+  border: 1px solid var(--blue-card-border);
+  padding: 14px 20px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  transition: background 0.15s;
+}
+.rfp-toggle:hover { background: #e4ecf9; }
+.rfp-toggle[aria-expanded="true"] { background: var(--navy); color: #fff; }
+.rfp-toggle[aria-expanded="true"] .rfp-toggle-chevron { transform: rotate(180deg); }
+.rfp-toggle-icon { color: var(--gold); flex-shrink: 0; }
+.rfp-toggle-label { flex: 1; }
+.rfp-toggle-chevron { flex-shrink: 0; transition: transform 0.2s; }
+.rfp-content {
+  border: 1px solid var(--blue-card-border);
+  border-top: none;
+  padding: 24px 28px;
+  background: #fff;
+}
+.rfp-content h2 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 20px 0 8px;
+}
+.rfp-content h2:first-child { margin-top: 0; }
+.rfp-content p, .rfp-content li {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: #444;
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.rfp-content ol, .rfp-content ul { margin: 8px 0 14px 20px; }
+.rfp-dates {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  margin: 10px 0 18px;
+}
+.rfp-dates tr { border-bottom: 1px solid var(--border); }
+.rfp-dates td { padding: 7px 10px; color: #444; }
+.rfp-dates td:first-child { font-weight: 600; color: var(--navy); width: 200px; }
 
 /* ─── Responsive ─── */
 @media (max-width: 800px) {

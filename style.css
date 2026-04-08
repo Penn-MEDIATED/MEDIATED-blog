@@ -137,7 +137,7 @@ img { max-width: 100%; display: block; }
 }
 .blog-hero p {
   font-family: var(--font-sans);
-  font-size: 1.05rem;
+  font-size: 1.175rem;
   color: #444;
   max-width: 560px;
   line-height: 1.7;
@@ -220,7 +220,7 @@ img { max-width: 100%; display: block; }
 /* Post excerpt */
 .post-excerpt {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: #333;
   line-height: 1.75;
   margin-bottom: 16px;
@@ -297,7 +297,7 @@ img { max-width: 100%; display: block; }
 .sidebar-section p,
 .sidebar-section .blurb {
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: #444;
   line-height: 1.65;
 }
@@ -318,7 +318,7 @@ img { max-width: 100%; display: block; }
 }
 .sidebar-section li a {
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
@@ -384,7 +384,7 @@ img { max-width: 100%; display: block; }
 /* Post body prose */
 .post-body {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.8;
   color: #2a2a2a;
 }
@@ -467,7 +467,7 @@ img { max-width: 100%; display: block; }
   font-size: 0.95rem;
 }
 .grant-list li p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #444;
   margin-bottom: 6px;
   line-height: 1.55;
@@ -710,7 +710,7 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--blue-card-border);
   background: #fff;
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.8;
   color: #2a2a2a;
 }
@@ -813,7 +813,7 @@ img { max-width: 100%; display: block; }
 }
 .bio-text {
   font-family: var(--font-sans);
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: #444;
   line-height: 1.7;
 }
@@ -863,7 +863,7 @@ img { max-width: 100%; display: block; }
 .rfp-content h2:first-child { margin-top: 0; }
 .rfp-content p, .rfp-content li {
   font-family: var(--font-sans);
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: #444;
   line-height: 1.7;
   margin-bottom: 6px;

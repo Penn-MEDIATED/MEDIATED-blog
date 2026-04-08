@@ -930,13 +930,109 @@ img { max-width: 100%; display: block; }
 }
 
 /* ─── Responsive ─── */
-@media (max-width: 800px) {
-  .page-body, .post-page-body { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-  .blog-hero h1 { font-size: 1.9rem; }
-  .site-nav { display: none; }
+
+/* ── Tablet (≤ 900px) ── */
+@media (max-width: 900px) {
+  /* Collapse two-column layout to single column */
+  .page-body,
+  .post-page-body {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin: 28px auto;
+  }
+
+  /* Sidebar loses sticky behaviour and becomes a footer widget */
+  .sidebar {
+    position: static;
+    gap: 24px;
+  }
+
+  /* Hero */
+  .blog-hero { padding: 40px 20px 32px; }
+  .blog-hero h1 { font-size: 2rem; }
+  .blog-hero p  { font-size: 1rem; }
+
+  /* Post cards */
+  .post-card,
+  .post-item.post-featured .post-card { padding: 22px 24px; }
+
+  /* Featured post title */
+  .post-item.post-featured h2 { font-size: 1.75rem; }
+
+  /* Expanded content inner */
+  .post-full-content-inner { padding: 22px 24px 28px; }
+
+  /* Stats */
   .stat-row { grid-template-columns: 1fr 1fr; }
+
+  /* Footer */
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .site-nav { display: none; }
 }
-@media (max-width: 480px) {
+
+/* ── Mobile (≤ 600px) ── */
+@media (max-width: 600px) {
+  /* Global padding */
+  .page-body,
+  .post-page-body { padding: 0 16px; margin: 20px auto; gap: 28px; }
+
+  /* Hero */
+  .blog-hero { padding: 28px 16px 24px; }
+  .blog-hero h1 { font-size: 1.6rem; margin-bottom: 10px; }
+  .blog-hero p  { font-size: 0.95rem; }
+
+  /* Post cards */
+  .post-card,
+  .post-item.post-featured .post-card { padding: 18px 18px; }
+
+  /* Post titles */
+  .post-item h2 { font-size: 1.35rem; }
+  .post-item.post-featured h2 { font-size: 1.5rem; }
+
+  /* Excerpt */
+  .post-excerpt { font-size: 0.95rem; }
+
+  /* Post footer — stack author + button vertically */
+  .post-item-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* Expanded content inner */
+  .post-full-content-inner { padding: 18px 18px 24px; font-size: 0.95rem; }
+
+  /* Stats: single column */
   .stat-row { grid-template-columns: 1fr; }
+
+  /* Bio: stack photo above text */
+  .bio-inner {
+    grid-template-columns: 1fr;
+  }
+  .bio-photo { width: 88px; height: 110px; }
+
+  /* Director cards: stack */
+  .director-byline { flex-direction: column; gap: 10px; }
+
+  /* RFP table: allow first column to shrink */
+  .rfp-dates td:first-child { width: auto; }
+
+  /* Newsletter button: full width */
+  .newsletter-cta-btn { display: block; text-align: center; }
+
+  /* Sidebar sections */
+  .sidebar-section { padding: 16px 18px; }
+
+  /* Grant list */
+  .grant-list li { padding: 14px 0; }
+
+  /* Pull quote */
+  .pull-quote { padding: 14px 16px; }
+  .pull-quote p { font-size: 1rem; }
+
+  /* Coming-soon block */
+  .coming-soon-block { padding: 28px 20px; }
+
+  /* Post meta wrap tighter */
+  .post-meta { gap: 6px; }
 }

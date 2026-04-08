@@ -496,6 +496,21 @@
       btn.setAttribute('aria-expanded', String(!isExpanded));
       content.hidden = isExpanded;
     }
+
+    /* ── iframe auto-resize: tell parent the page's full height ── */
+    function sendHeight() {
+      if (window.parent === window) return; // not in an iframe, skip
+      const h = document.documentElement.scrollHeight;
+      window.parent.postMessage({ type: 'mediated-resize', height: h }, '*');
+    }
+
+    // Send on initial load
+    window.addEventListener('load', sendHeight);
+
+    // Re-send whenever an accordion transition finishes
+    document.addEventListener('transitionend', function(e) {
+      if (e.target.classList.contains('post-full-content')) sendHeight();
+    });
   </script>
 
 </body>

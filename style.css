@@ -897,6 +897,16 @@ img { max-width: 100%; display: block; }
   color: var(--muted);
 }
 
+/* ─── Post Feature Image (GIF/photo inside expanded content) ─── */
+.post-feature-img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  display: block;
+  margin: 0 0 24px;
+  border: 1px solid var(--border);
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 800px) {
   .page-body, .post-page-body { grid-template-columns: 1fr; }

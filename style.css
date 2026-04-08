@@ -116,6 +116,7 @@ img { max-width: 100%; display: block; }
 .blog-hero-inner {
   max-width: var(--max-width);
   margin: 0 auto;
+  padding: 0 24px;
 }
 .blog-hero .eyebrow {
   font-family: var(--font-sans);

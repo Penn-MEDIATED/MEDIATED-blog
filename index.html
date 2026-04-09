@@ -41,8 +41,8 @@
             <p class="post-excerpt">Penn MEDIATED is honored to welcome one of the foremost scholars of democratic governance, Penn President Emerita Amy Gutmann, as a faculty advisor. The longest-serving president in the University of Pennsylvania's history and an appointee of both Presidents Obama and Biden.</p>
             <div class="post-item-footer">
               <span class="post-author">Penn MEDIATED</span>
-              <button class="expand-btn" onclick="togglePost('amy-gutmann')" aria-expanded="false" aria-controls="content-amy-gutmann">
-                <span class="expand-label">Read more</span> <span class="expand-icon">↓</span>
+              <button class="expand-btn" onclick="openModal('amy-gutmann')">
+                <span class="expand-label">Read more</span> <span class="expand-icon">→</span>
               </button>
             </div>
           </div>
@@ -122,8 +122,8 @@
             <p class="post-excerpt">In the inaugural year of the Penn MEDIATED Research Grant Program, the Center funded 12 grants totaling $160,000 — including projects that will build essential datasets, develop new software tools, and experimentally test new interventions. The next RFP will open in late summer or early fall 2026.</p>
             <div class="post-item-footer">
               <span class="post-author">Penn MEDIATED</span>
-              <button class="expand-btn" onclick="togglePost('grant-awards')" aria-expanded="false" aria-controls="content-grant-awards">
-                <span class="expand-label">Read more</span> <span class="expand-icon">↓</span>
+              <button class="expand-btn" onclick="openModal('grant-awards')">
+                <span class="expand-label">Read more</span> <span class="expand-icon">→</span>
               </button>
             </div>
           </div>
@@ -285,8 +285,8 @@
             <p class="post-excerpt">Co-Directors Duncan J. Watts and Christopher S. Yoo share their vision for the Penn Center on Media, Technology, and Democracy — why they built it, what they are learning, and where they hope it can go. Originally shared in the Center newsletter.</p>
             <div class="post-item-footer">
               <span class="post-author"><strong>Duncan J. Watts &amp; Christopher S. Yoo</strong> · Co-Directors</span>
-              <button class="expand-btn" onclick="togglePost('center-intro')" aria-expanded="false" aria-controls="content-center-intro">
-                <span class="expand-label">Read more</span> <span class="expand-icon">↓</span>
+              <button class="expand-btn" onclick="openModal('center-intro')">
+                <span class="expand-label">Read more</span> <span class="expand-icon">→</span>
               </button>
             </div>
           </div>
@@ -352,8 +352,8 @@
             <p class="post-excerpt">We're proud to introduce Penn MEDIATED's affiliated faculty members — distinguished by their rigorous empirical research advancing our collective understanding of the information ecosystem and its impact on democracy.</p>
             <div class="post-item-footer">
               <span class="post-author">Penn MEDIATED</span>
-              <button class="expand-btn" onclick="togglePost('affiliated-faculty')" aria-expanded="false" aria-controls="content-affiliated-faculty">
-                <span class="expand-label">Read more</span> <span class="expand-icon">↓</span>
+              <button class="expand-btn" onclick="openModal('affiliated-faculty')">
+                <span class="expand-label">Read more</span> <span class="expand-icon">→</span>
               </button>
             </div>
           </div>
@@ -388,8 +388,8 @@
             <p class="post-excerpt">We're excited to formally launch our Research Compendium — an ongoing effort to comprehensively curate Penn's research on the information ecosystem and its impact on democracy.</p>
             <div class="post-item-footer">
               <span class="post-author">Penn MEDIATED</span>
-              <button class="expand-btn" onclick="togglePost('research-compendium')" aria-expanded="false" aria-controls="content-research-compendium">
-                <span class="expand-label">Read more</span> <span class="expand-icon">↓</span>
+              <button class="expand-btn" onclick="openModal('research-compendium')">
+                <span class="expand-label">Read more</span> <span class="expand-icon">→</span>
               </button>
             </div>
           </div>
@@ -446,48 +446,43 @@
     </aside>
   </div>
 
+  <!-- ─── Modal overlay ─── -->
+  <div id="post-modal" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-header">
+        <div id="modal-meta"></div>
+        <h2 id="modal-title"></h2>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
   <script>
-    function closePost(article) {
-      const content = article.querySelector('.post-full-content');
-      const btn = article.querySelector('.expand-btn');
-      if (!content || !article.classList.contains('expanded')) return;
-      content.style.maxHeight = content.scrollHeight + 'px';
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        content.style.maxHeight = '0';
-      }));
-      article.classList.remove('expanded');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.querySelector('.expand-label').textContent = 'Read more';
-      btn.querySelector('.expand-icon').textContent = '↓';
+    function openModal(id) {
+      const src = document.getElementById('content-' + id);
+      const article = src.closest('.post-item');
+      document.getElementById('modal-title').textContent = article.querySelector('h2').textContent;
+      document.getElementById('modal-meta').innerHTML = article.querySelector('.post-meta').outerHTML;
+      document.getElementById('modal-body').innerHTML = src.querySelector('.post-full-content-inner').innerHTML;
+      const modal = document.getElementById('post-modal');
+      modal.hidden = false;
+      modal.scrollTop = 0;
     }
 
-    function togglePost(id) {
-      const content = document.getElementById('content-' + id);
-      const article = content.closest('.post-item');
-      const btn = article.querySelector('.expand-btn');
-      const label = btn.querySelector('.expand-label');
-      const icon = btn.querySelector('.expand-icon');
-      const isOpen = article.classList.contains('expanded');
-
-      // Close any other open post first
-      document.querySelectorAll('.post-item.expanded').forEach(other => {
-        if (other !== article) closePost(other);
-      });
-
-      if (isOpen) {
-        closePost(article);
-      } else {
-        article.classList.add('expanded');
-        content.style.maxHeight = content.scrollHeight + 'px';
-        content.addEventListener('transitionend', () => {
-          if (article.classList.contains('expanded')) content.style.maxHeight = 'none';
-        }, { once: true });
-        btn.setAttribute('aria-expanded', 'true');
-        label.textContent = 'Close';
-        icon.textContent = '↑';
-        setTimeout(() => article.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
-      }
+    function closeModal() {
+      document.getElementById('post-modal').hidden = true;
     }
+
+    // Close on backdrop click
+    document.getElementById('post-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
 
     function toggleRFP() {
       const btn = document.querySelector('.rfp-toggle');
@@ -496,21 +491,6 @@
       btn.setAttribute('aria-expanded', String(!isExpanded));
       content.hidden = isExpanded;
     }
-
-    /* ── iframe auto-resize: tell parent the page's full height ── */
-    function sendHeight() {
-      if (window.parent === window) return; // not in an iframe, skip
-      const h = document.documentElement.scrollHeight;
-      window.parent.postMessage({ type: 'mediated-resize', height: h }, '*');
-    }
-
-    // Send on initial load
-    window.addEventListener('load', sendHeight);
-
-    // Re-send whenever an accordion transition finishes
-    document.addEventListener('transitionend', function(e) {
-      if (e.target.classList.contains('post-full-content')) sendHeight();
-    });
   </script>
 
 </body>

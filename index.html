@@ -540,6 +540,24 @@
   </div>
 
   <script>
+    /* ── Send full page height to WordPress iframe wrapper ── */
+    function sendHeight() {
+      if (window.parent === window) return;
+      const h = Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      ) + 50; // small buffer
+      window.parent.postMessage({ type: 'mediated-resize', height: h }, '*');
+    }
+
+    // Send on load and after fonts/images settle
+    window.addEventListener('load', function() {
+      sendHeight();
+      setTimeout(sendHeight, 800);
+    });
+
     function openModal(id) {
       const src = document.getElementById('content-' + id);
       const article = src.closest('.post-item');
@@ -549,7 +567,7 @@
       const modal = document.getElementById('post-modal');
       modal.hidden = false;
       modal.scrollTop = 0;
-      // Tell WordPress iframe to expand to full viewport height
+      // Scroll WordPress page so top of iframe is visible
       if (window.parent !== window) {
         window.parent.postMessage({ type: 'mediated-modal-open' }, '*');
       }
@@ -557,9 +575,9 @@
 
     function closeModal() {
       document.getElementById('post-modal').hidden = true;
-      // Tell WordPress iframe to shrink back to feed height
+      // Re-send accurate height so iframe never stays too small
       if (window.parent !== window) {
-        window.parent.postMessage({ type: 'mediated-modal-close' }, '*');
+        setTimeout(sendHeight, 50);
       }
     }
 

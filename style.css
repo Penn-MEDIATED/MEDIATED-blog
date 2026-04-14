@@ -1067,25 +1067,27 @@ img { max-width: 100%; display: block; }
 
 .modal-top-bar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  gap: 10px;
   padding: 14px 20px 0;
 }
 
 .modal-copy-btn {
-  background: none;
-  border: 1px solid var(--border);
+  background: var(--gold);
+  border: none;
   border-radius: 6px;
-  padding: 6px 14px;
+  padding: 8px 16px;
   font-size: 0.85rem;
   font-family: var(--font-sans);
-  color: var(--link-blue);
+  font-weight: 700;
+  color: var(--navy);
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition: opacity 0.15s;
+  letter-spacing: 0.01em;
 }
 .modal-copy-btn:hover {
-  background: var(--blue-card);
-  border-color: var(--link-blue);
+  opacity: 0.85;
 }
 
 .modal-close {

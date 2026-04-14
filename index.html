@@ -595,6 +595,22 @@
   </div>
 
   <script>
+    /* ── Make entire post card clickable ── */
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.post-item').forEach(function(article) {
+        var btn = article.querySelector('.expand-btn');
+        if (!btn) return;
+        var match = (btn.getAttribute('onclick') || '').match(/openModal\('(.+?)'\)/);
+        if (!match) return;
+        var id = match[1];
+        var card = article.querySelector('.post-card');
+        card.addEventListener('click', function(e) {
+          if (e.target.closest('.expand-btn')) return;
+          openModal(id);
+        });
+      });
+    });
+
     /* ── Send full page height to WordPress iframe wrapper ── */
     function sendHeight() {
       if (window.parent === window) return;

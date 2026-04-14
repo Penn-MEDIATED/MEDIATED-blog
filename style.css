@@ -679,6 +679,11 @@ img { max-width: 100%; display: block; }
 /* ─── Expandable Post Cards ─── */
 .post-card {
   padding: 28px 30px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.post-card:hover {
+  background: var(--blue-card);
 }
 .post-item {
   padding: 0;

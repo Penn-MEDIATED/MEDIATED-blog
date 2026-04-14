@@ -638,6 +638,8 @@
       const modal = document.getElementById('post-modal');
       modal.hidden = false;
       modal.scrollTop = 0;
+      // Update URL hash for shareable deep link
+      history.replaceState(null, '', '#' + id);
       // Scroll WordPress page so top of iframe is visible
       if (window.parent !== window) {
         window.parent.postMessage({ type: 'mediated-modal-open' }, '*');
@@ -646,11 +648,21 @@
 
     function closeModal() {
       document.getElementById('post-modal').hidden = true;
+      // Clear hash
+      history.replaceState(null, '', window.location.pathname);
       // Re-send accurate height so iframe never stays too small
       if (window.parent !== window) {
         setTimeout(sendHeight, 50);
       }
     }
+
+    // Open post from URL hash on load (e.g. /blog/#deceptive-networks)
+    window.addEventListener('DOMContentLoaded', function() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && document.getElementById('content-' + hash)) {
+        openModal(hash);
+      }
+    });
 
     // Close on backdrop click
     document.getElementById('post-modal').addEventListener('click', function(e) {

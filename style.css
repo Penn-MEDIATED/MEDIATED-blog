@@ -1063,6 +1063,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 10px;
   padding: 14px 20px 0;
+  background: var(--blue-card);
 }
 
 .modal-copy-btn {
@@ -1103,8 +1104,7 @@ img { max-width: 100%; display: block; }
 .modal-header {
   background: var(--blue-card);
   border-bottom: 3px solid var(--gold);
-  padding: 28px 32px 24px;
-  padding-right: 60px;
+  padding: 16px 32px 24px;
 }
 .modal-header .post-meta {
   margin-bottom: 10px;
@@ -1150,7 +1150,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 600px) {
   .modal-overlay { padding: 0; }
   .modal-box { max-width: 100%; min-height: 100dvh; }
-  .modal-header { padding: 20px 20px 18px; padding-right: 52px; }
+  .modal-header { padding: 12px 20px 18px; }
   .modal-header h2 { font-size: 1.3rem; }
   .modal-body { padding: 20px 20px 32px; font-size: 1rem; }
 }

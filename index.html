@@ -729,12 +729,57 @@
     });
 
     function copyPostLink() {
-      const url = _parentUrl || window.location.href;
-      navigator.clipboard.writeText(url).then(function() {
-        const label = document.getElementById('modal-copy-label');
-        label.textContent = '✓ Copied!';
+      const label = document.getElementById('modal-copy-label');
+      // Build the URL. Prefer the parent WordPress URL if we've received it;
+      // otherwise fall back to this page's own URL with the current hash.
+      var url = _parentUrl;
+      if (!url) {
+        var base = window.location.href.split('#')[0];
+        url = currentModalId ? (base + '#' + currentModalId) : window.location.href;
+      }
+
+      function flash(msg) {
+        label.textContent = msg;
         setTimeout(function() { label.textContent = '🔗 Copy link'; }, 2000);
-      });
+      }
+
+      function legacyCopy(text) {
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.top = '0';
+          ta.style.left = '0';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          ta.setSelectionRange(0, text.length);
+          var ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          return ok;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      // Prefer the async Clipboard API (requires secure context + iframe permission)
+      if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(
+          function() { flash('✓ Copied!'); },
+          function() {
+            // Permission denied or iframe blocked it — fall back
+            if (legacyCopy(url)) flash('✓ Copied!');
+            else flash('⚠ Copy failed');
+          }
+        );
+        return;
+      }
+
+      // Legacy / insecure-context path
+      if (legacyCopy(url)) flash('✓ Copied!');
+      else flash('⚠ Copy failed');
     }
 
     function closeModal() {

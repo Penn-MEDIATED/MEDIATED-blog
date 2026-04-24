@@ -730,13 +730,14 @@
 
     function copyPostLink() {
       const label = document.getElementById('modal-copy-label');
-      // Build the URL. Prefer the parent WordPress URL if we've received it;
-      // otherwise fall back to this page's own URL with the current hash.
-      var url = _parentUrl;
-      if (!url) {
-        var base = window.location.href.split('#')[0];
-        url = currentModalId ? (base + '#' + currentModalId) : window.location.href;
-      }
+      // Build the URL. Prefer the parent WordPress URL's BASE (strip any
+      // existing hash) and re-attach the current post's id so the copied
+      // link always deep-links to the open post. Fall back to this page's
+      // own URL if the parent URL hasn't been received.
+      var base = _parentUrl
+        ? _parentUrl.split('#')[0]
+        : window.location.href.split('#')[0];
+      var url = currentModalId ? (base + '#' + currentModalId) : base;
 
       function flash(msg) {
         label.textContent = msg;

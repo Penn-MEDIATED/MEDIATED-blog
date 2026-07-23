@@ -17,8 +17,8 @@
   --light-bg:   #f7f7f7;
   --link-blue:  #0055A4;
   --max-width:  1140px;
-  --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
-  --font-sans:  'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans:  'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

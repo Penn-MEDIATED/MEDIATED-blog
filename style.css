@@ -12,7 +12,7 @@
   --body-bg:    #ffffff;
   --text:       #1a1a1a;
   --muted:      #666666;
-  --label:      #888888;
+  --label:      #707070;
   --border:     #e0e0e0;
   --light-bg:   #f7f7f7;
   --link-blue:  #0055A4;
@@ -24,7 +24,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; scroll-behavior: smooth; }
 body {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   color: var(--text);
   background: var(--body-bg);
   line-height: 1.7;
@@ -110,8 +110,7 @@ img { max-width: 100%; display: block; }
 /* ─── Page Hero ─── */
 .blog-hero {
   background: #ffffff;
-  border-bottom: 3px solid var(--gold);
-  padding: 52px 24px 44px;
+  padding: 52px 0 44px;
 }
 .blog-hero-inner {
   max-width: var(--max-width);
@@ -124,7 +123,7 @@ img { max-width: 100%; display: block; }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #990000;
   margin-bottom: 12px;
 }
 .blog-hero h1 {
@@ -140,7 +139,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-sans);
   font-size: 1.175rem;
   color: #444;
-  max-width: 560px;
+  max-width: none;
   line-height: 1.7;
 }
 
@@ -277,10 +276,25 @@ img { max-width: 100%; display: block; }
   top: 24px;
 }
 
+/* Primary sidebar CTA (newsletter): uses the warm cream + gold accent
+   already established sitewide for callouts/pull-quotes, rather than the
+   blue-card look every post in the feed already uses by default — keeps
+   it from reading as "just another card" next to the main column. */
 .sidebar-section {
-  background: var(--blue-card);
+  background: #fdfaf4;
   border: 1px solid var(--blue-card-border);
+  border-top: 3px solid var(--gold);
   padding: 20px 22px;
+}
+
+/* Secondary sidebar blocks (plain reference/nav content, not a CTA) get
+   the quieter treatment About uses for its plain link cards — white bg,
+   thin neutral border, no navy accent — so they recede behind the
+   highlighted newsletter card. */
+.sidebar-section.sidebar-secondary {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-top: 1px solid var(--border);
 }
 
 .sidebar-section h3 {
@@ -321,13 +335,13 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--navy);
   text-decoration: none;
   line-height: 1.4;
   display: block;
 }
 .sidebar-section li a:hover {
-  color: var(--navy);
+  color: var(--gold);
   text-decoration: underline;
 }
 .sidebar-section li .meta {
@@ -749,13 +763,13 @@ img { max-width: 100%; display: block; }
   background: #fdfaf4;
 }
 .pull-quote p {
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   font-size: 1.1rem;
   font-weight: 700;
   font-style: italic;
-  color: #2a2a2a;
+  color: var(--navy);
   margin-bottom: 10px !important;
-  line-height: 1.7;
+  line-height: 1.55;
 }
 .pull-quote .attribution {
   font-family: var(--font-sans);
@@ -944,7 +958,7 @@ img { max-width: 100%; display: block; }
   }
 
   /* Hero */
-  .blog-hero { padding: 40px 20px 32px; }
+  .blog-hero { padding: 40px 0 32px; }
   .blog-hero h1 { font-size: 2rem; }
   .blog-hero p  { font-size: 1rem; }
 
@@ -973,7 +987,8 @@ img { max-width: 100%; display: block; }
   .post-page-body { padding: 0 16px; margin: 20px auto; gap: 28px; }
 
   /* Hero */
-  .blog-hero { padding: 28px 16px 24px; }
+  .blog-hero { padding: 28px 0 24px; }
+  .blog-hero-inner { padding: 0 16px; }
   .blog-hero h1 { font-size: 1.6rem; margin-bottom: 10px; }
   .blog-hero p  { font-size: 0.95rem; }
 

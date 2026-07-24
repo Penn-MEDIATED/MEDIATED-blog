@@ -131,7 +131,7 @@ img { max-width: 100%; display: block; }
   font-size: 2.6rem;
   font-weight: 700;
   line-height: 1.2;
-  color: #990000;
+  color: var(--navy);
   margin-bottom: 14px;
   max-width: 600px;
 }

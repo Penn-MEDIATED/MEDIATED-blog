@@ -899,7 +899,7 @@ img { max-width: 100%; display: block; }
   padding: 32px 36px;
 }
 .post-item.post-featured h2 {
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   line-height: 1.2;
   margin-bottom: 14px;
 }
@@ -994,7 +994,7 @@ img { max-width: 100%; display: block; }
 
   /* Post titles */
   .post-item h2 { font-size: 1.35rem; }
-  .post-item.post-featured h2 { font-size: 1.5rem; }
+  .post-item.post-featured h2 { font-size: 1.4rem; }
 
   /* Excerpt */
   .post-excerpt { font-size: 0.95rem; }

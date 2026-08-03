@@ -110,7 +110,7 @@ img { max-width: 100%; display: block; }
 /* ─── Page Hero ─── */
 .blog-hero {
   background: #ffffff;
-  padding: 52px 0 28px;
+  padding: 0 0 28px;
 }
 .blog-hero-inner {
   max-width: var(--max-width);
@@ -958,7 +958,7 @@ img { max-width: 100%; display: block; }
   }
 
   /* Hero */
-  .blog-hero { padding: 40px 0 32px; }
+  .blog-hero { padding: 0 0 32px; }
   .blog-hero p  { font-size: 1rem; }
 
   /* Post cards */
@@ -983,7 +983,7 @@ img { max-width: 100%; display: block; }
   .post-page-body { padding: 0 16px; margin: 20px auto; gap: 28px; }
 
   /* Hero */
-  .blog-hero { padding: 28px 0 24px; }
+  .blog-hero { padding: 0 0 24px; }
   .blog-hero-inner { padding: 0 16px; }
   .blog-hero h1 { font-size: 1.6rem; margin-bottom: 10px; }
   .blog-hero p  { font-size: 0.95rem; }
